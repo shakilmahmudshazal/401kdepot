@@ -20,12 +20,16 @@ Route::get('/', function () {
     return view('advisors.signup');
 })->name('home');
 
-Route::post('/createAdvisor','AdvisorLoginController@createAdvisor');
-Route::get('/advisor/verify/{token}', 'AdvisorLoginController@verifyEmail');
+Route::post('/createUser','UserController@createUser');
+Route::get('/user/verify/{token}', 'UserController@verifyEmail');
 
-Route::get('/login', function () {
-    return view('advisors.login');
-});
+Route::get('/login','SessionController@create'); 
+Route::post('/login','SessionController@login');
+Route::get('/logout','SessionController@destroy');  
+
+// 	function () {
+//     return view('advisors.login');
+// });
 
 
 

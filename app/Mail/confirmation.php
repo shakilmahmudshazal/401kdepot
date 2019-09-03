@@ -11,16 +11,16 @@ class confirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
-   public $advisorLogin;
+   public $user;
   
   /**
   * Create a new message instance.
   *
   * @return void
   */
-  public function __construct($advisorLogin)
+  public function __construct($user)
   {
-    $this->advisorLogin = $advisorLogin;
+    $this->user = $user;
   }
 
     public function build()

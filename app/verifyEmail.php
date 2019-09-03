@@ -11,6 +11,6 @@ class verifyEmail extends Model
 
     public function advisorLogin()
     {
-        return $this->belongsTo('App\advisorLogin');
+        return $this->belongsTo('App\user');
     }
 }

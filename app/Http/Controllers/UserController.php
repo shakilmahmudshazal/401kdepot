@@ -1,16 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\advisorLogin;
-use App\verifyEmail;
 
 use Illuminate\Http\Request;
+use App\user;
+use App\verifyEmail;
 use App\Mail\confirmation;
 
-class AdvisorLoginController extends Controller
+
+class UserController extends Controller
 {
-    //
-     public function createAdvisor( Request $request)
+     public function createUser( Request $request)
     {
     	$validaterData=$request->validate([
           'email'=>'required',
@@ -20,16 +20,16 @@ class AdvisorLoginController extends Controller
           $email=$request['email'];
           $password=$request['password'];
 
-          $advisorLogin = advisorLogin::create([
+          $user = user::create([
               'email' => $email,
               'password' => bcrypt($password)
             ]);
 
           $verifyEmail = verifyEmail::create([
-            'advisor_login_id' => $advisorLogin->id,
+            'user_id' => $user->id,
             'token' => sha1(time())
           ]);
-          \Mail::to($advisorLogin)->send(new confirmation($advisorLogin));
+          \Mail::to($user)->send(new confirmation($user));
             return view('advisors.advisorProfile');
 
 
@@ -57,6 +57,5 @@ class AdvisorLoginController extends Controller
           }
           return redirect('/login')->with('status', $status);
         }
-
 
 }
