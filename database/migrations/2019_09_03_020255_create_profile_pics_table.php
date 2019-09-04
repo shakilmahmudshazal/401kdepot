@@ -15,6 +15,8 @@ class CreateProfilePicsTable extends Migration
     {
         Schema::create('profile_pics', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id');
+            $table->string('profile_pic');
             $table->timestamps();
         });
     }

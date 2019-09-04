@@ -30,6 +30,8 @@ Route::get('/logout','SessionController@destroy');
 // 	function () {
 //     return view('advisors.login');
 // });
-
+Route::get('/advisorProfile','ProfileController@show');
+Route::get('/advisorProfilePicCreate','ProfilePicController@create');
+Route::post('/save-profile','ProfilePicController@save');
 
 

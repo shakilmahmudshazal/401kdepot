@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-sm-8">
         
-<form method="post" action="/createAdvisor">
+<form method="post" action="/createUser">
       {{csrf_field()}}
 <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>

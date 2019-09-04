@@ -9,7 +9,7 @@ class verifyEmail extends Model
     //
     protected $guarded=[];
 
-    public function advisorLogin()
+    public function user()
     {
         return $this->belongsTo('App\user');
     }

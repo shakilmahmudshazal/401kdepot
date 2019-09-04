@@ -12,6 +12,15 @@ class user extends Authenticatable
 
     public function verifyEmail()
 	{
-	  return $this->hasOne('App\VerifyEmail');
+	  return $this->hasOne('App\verifyEmail');
+	}
+	 public function profilePic()
+	{
+	  return $this->hasOne('App\profilePic');
+	}
+	
+	public function advisorBasicInfo()
+	{
+	  return $this->hasOne('App\advisorBasicInfo');
 	}
 }

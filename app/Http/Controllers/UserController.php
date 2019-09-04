@@ -10,6 +10,14 @@ use App\Mail\confirmation;
 
 class UserController extends Controller
 {
+        // public function __construct()
+        // {
+        //    $this->middleware('guest');
+
+        // }
+
+
+
      public function createUser( Request $request)
     {
     	$validaterData=$request->validate([
@@ -30,7 +38,8 @@ class UserController extends Controller
             'token' => sha1(time())
           ]);
           \Mail::to($user)->send(new confirmation($user));
-            return view('advisors.advisorProfile');
+          // auth()->login($user);
+            return view('advisors.checkConfirmation');
 
 
          
@@ -44,10 +53,10 @@ class UserController extends Controller
         {
           $verifyEmail = verifyEmail::where('token', $token)->first();
           if(isset($verifyEmail) ){
-            $advisorLogin = $verifyEmail->advisorLogin;
-            if(!$advisorLogin->emailConfirmed) {
-              $verifyEmail->advisorLogin->emailConfirmed = 1;
-              $verifyEmail->advisorLogin->save();
+            $user = $verifyEmail->user;
+            if(!$verifyEmail->user->emailConfirmed) {
+              $verifyEmail->user->emailConfirmed = 1;
+              $verifyEmail->user->save();
               $status = "Your e-mail is verified. You can now login.";
             } else {
               $status = "Your e-mail is already verified. You can now login.";
